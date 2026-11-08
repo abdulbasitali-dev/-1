@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fffaf5">
+<title>أثر طيب | عن روح جدتي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold:#b9945b;
+  --gold2:#ddc394;
+  --ink:#55483e;
+  --muted:#918477;
+  --cream:#fffaf4;
+  --white:#fff;
+  --line:#eee2d1;
+  --green:#758c78;
+  --shadow:0 12px 35px rgba(129,99,61,.09);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Cairo',sans-serif;
+  font-size:16px;
+}
+button{font-family:inherit}
+.topbar{
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,250,244,.93);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  max-width:1150px;margin:auto;padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{font-weight:800;color:var(--gold);font-size:20px}
+.brand small{display:block;font-size:11px;color:var(--muted);font-weight:400}
+.nav a{
+  color:var(--ink);text-decoration:none;font-size:13px;
+  margin-right:15px;
+}
+.nav a:hover{color:var(--gold)}
+.hero{
+  min-height:520px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:65px 20px;
+  position:relative;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(255,250,244,.45),rgba(255,250,244,.9)),
+    url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1800&q=85') center/cover;
+}
+.hero-content{max-width:760px;position:relative}
+.hero-flower{font-size:48px}
+.kicker{color:#98764a;letter-spacing:2px;font-size:14px}
+h1{
+  font-size:clamp(43px,8vw,76px);
+  color:#a9824c;margin:10px 0 0;font-weight:700;
+}
+.hero-sub{font-size:clamp(20px,4vw,28px);margin:0;color:#75675a}
+.hero p{
+  font-size:18px;line-height:2.1;color:#71665d;
+  max-width:620px;margin:22px auto;
+}
+.gold-line{
+  width:90px;height:2px;background:var(--gold);
+  margin:22px auto;
+}
+.btn{
+  border:0;border-radius:35px;padding:13px 25px;
+  cursor:pointer;font-size:15px;font-weight:700;
+  transition:.25s;display:inline-flex;align-items:center;
+  justify-content:center;gap:8px;text-decoration:none;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-gold{background:linear-gradient(120deg,#b58d53,#d7ba87);color:white;box-shadow:0 7px 18px #b9945b35}
+.btn-light{background:white;border:1px solid var(--line);color:var(--gold)}
+.container{width:min(1120px,92%);margin:auto}
+.section{padding:65px 0}
+.section-heading{text-align:center;margin-bottom:30px}
+.section-heading h2{font-size:clamp(25px,5vw,36px);color:#a9824c;margin:0 0 8px}
+.section-heading p{color:var(--muted);margin:0;font-size:16px}
+.daily{
+  background:linear-gradient(120deg,#fff,#f8efe2);
+  border:1px solid var(--line);border-radius:25px;
+  padding:27px;text-align:center;box-shadow:var(--shadow);
+  margin-top:-25px;position:relative;z-index:2;
+}
+.daily-label{color:var(--gold);font-weight:700}
+.daily-text{font-family:'Amiri',serif;font-size:27px;line-height:1.9;margin:10px auto}
+.daily small{color:var(--muted)}
+.doors{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+}
+.door{
+  border:1px solid var(--line);border-radius:22px;
+  overflow:hidden;background:white;cursor:pointer;
+  text-align:right;padding:0;color:var(--ink);
+  box-shadow:var(--shadow);transition:.3s;
+}
+.door:hover{transform:translateY(-7px);border-color:var(--gold2)}
+.door-image{height:145px;position:relative;overflow:hidden;background:#eee}
+.door-image img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.door:hover img{transform:scale(1.07)}
+.door-icon{
+  position:absolute;bottom:10px;right:12px;
+  background:#fffdf4eF;border-radius:50%;width:43px;height:43px;
+  display:grid;place-items:center;font-size:22px;
+}
+.door-info{padding:17px}
+.door-info h3{margin:0 0 5px;color:#8f7048;font-size:18px}
+.door-info p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.door-info span{display:block;color:var(--gold);font-size:13px;margin-top:10px}
+.panel{
+  display:none;margin-top:30px;background:white;
+  border:1px solid var(--line);border-radius:25px;
+  padding:30px 22px;box-shadow:var(--shadow);
+  text-align:center;scroll-margin-top:90px;
+}
+.panel.active{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.panel h2{color:var(--gold);font-size:27px;margin:0 0 15px}
+.panel-text{
+  font-family:'Amiri',serif;font-size:27px;
+  line-height:2.1;max-width:760px;margin:15px auto;
+}
+.reference{color:var(--green);font-size:14px}
+.panel-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.panel-close{margin-top:18px;background:none;border:0;color:var(--muted);cursor:pointer}
+.amounts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:20px}
+.amount{
+  padding:12px 20px;border-radius:30px;background:#fff;
+  border:1px solid var(--gold2);color:#987443;cursor:pointer;
+  font-size:16px;
+}
+.amount.selected{background:var(--gold);color:white}
+.note{
+  background:#fff8ed;border:1px solid #f0dfc4;
+  padding:13px;border-radius:13px;color:#86745e;
+  font-size:13px;line-height:1.9;max-width:650px;margin:18px auto;
+}
+.counter-box{
+  max-width:440px;margin:20px auto;background:#fffaf3;
+  border:1px solid var(--line);border-radius:22px;padding:25px;
+}
+.counter-number{font-size:55px;color:var(--gold);font-weight:800}
+.counter-label{color:var(--muted)}
+.counter-button{
+  width:130px;height:130px;border-radius:50%;border:7px solid #ead9bb;
+  background:linear-gradient(140deg,#c9a66e,#a9824c);
+  color:white;font-size:25px;font-weight:700;cursor:pointer;
+  box-shadow:0 9px 22px #b9945b45;
+}
+.counter-button:active{transform:scale(.95)}
+.reset{display:block;margin:15px auto;border:0;background:none;color:var(--muted);cursor:pointer}
+.quote{
+  background:linear-gradient(135deg,#f8efe4,#fff);
+  border-radius:25px;padding:35px 20px;text-align:center;
+}
+.quote p{font-family:'Amiri',serif;font-size:27px;line-height:2}
+.quote strong{color:var(--gold)}
+.footer{
+  margin-top:50px;padding:45px 20px;text-align:center;
+  background:#f4ecdf;color:#887a6c;line-height:2;
+}
+.footer-title{font-size:25px;color:#a9824c}
+.floating{
+  position:fixed;bottom:18px;left:18px;z-index:15;
+  width:53px;height:53px;border-radius:50%;border:0;
+  background:#b9945b;color:white;font-size:22px;
+  box-shadow:var(--shadow);cursor:pointer;
+}
+@media(max-width:850px){
+  .doors{grid-template-columns:repeat(2,1fr)}
+  .nav a{margin-right:7px;font-size:12px}
+}
+@media(max-width:480px){
+  .hero{min-height:460px}
+  .hero p{font-size:16px}
+  .section{padding:48px 0}
+  .doors{gap:11px}
+  .door-image{height:115px}
+  .door-info{padding:13px}
+  .door-info h3{font-size:16px}
+  .door-info p{font-size:12px}
+  .daily-text,.panel-text,.quote p{font-size:23px}
+  .panel{padding:23px 14px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <nav class="nav">
+    <div class="brand">🤍 أثر طيب <small>عن روح جدتي الغالية</small></div>
+    <div>
+      <a href="#doors">أبواب الخير</a>
+      <a href="#tasbeeh">المسبحة</a>
+      <a href="#about">عن المبادرة</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-flower">🤍 🌸 🤍</div>
+    <div class="kicker">ذِكْرَى طَيِّبَةٌ وَأَثَرٌ لَا يَنْقَطِع</div>
+    <h1>أثر طيب</h1>
+    <div class="hero-sub">عن روح جدتي الغالية</div>
+    <div class="gold-line"></div>
+    <p>
+      هنا لا تنتهي الحكايات… هنا يبدأ الأثر الطيب.
+      ربما تغيب الوجوه عن أعيننا، لكن يبقى الدعاء،
+      ويبقى الخير الذي نزرعه في حياة الآخرين.
+    </p>
+    <a href="#doors" class="btn btn-gold">ابدأ رحلة الخير 🤍</a>
+  </div>
+</section>
+
+<main class="container">
+
+  <section class="daily">
+    <div class="daily-label">✨ رسالة خير اليوم</div>
+    <div class="daily-text" id="dailyText"></div>
+    <small>اجعل اليوم بداية لأثر جميل.</small>
+  </section>
+
+  <section class="section" id="doors">
+    <div class="section-heading">
+      <h2>اختر بابًا من أبواب الخير</h2>
+      <p>كل باب يحمل لك فرصة لعمل طيب… اختر ما يطمئن إليه قلبك</p>
+    </div>
+
+    <div class="doors">
+
+      <button class="door" onclick="openDoor('dua')">
+        <div class="door-image">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=700&q=80" alt="زهور بيضاء">
+          <span class="door-icon">🤲</span>
+        </div>
+        <div class="door-info"><h3>الدعاء لجدتي</h3><p>دعوات من القلب بالرحمة والمغفرة.</p><span>افتح هذا الباب ←</span></div>
+      </button>
+
+      <button class="door" onclick="openDoor('quran')">
+        <div class="door-image">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=700&q=80" alt="مصحف">
+          <span class="door-icon">📖</span>
+        </div>
+        <div class="door-info"><h3>القرآن الكريم</h3><p>آيات من كتاب الله مع مراجعها.</p><span>افتح هذا الباب ←</span></div>
+      </button>
+
+      <button class="door" onclick="openDoor('dhikr')">
+        <div class="door-image">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=700&q=80" alt="طبيعة هادئة">
+          <span class="door-icon">🌿</span>
+        </div>
+        <div class="door-info"><h3>الذكر والتسبيح</h3><p>اذكر الله بقلب حاضر ولسان ذاكر.</p><span>افتح هذا الباب ←</span></div>
+      </button>
+
+      <button class="door" onclick="openDoor('charity')">
+        <div class="door-image">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=700&q=80" alt="مساعدة الآخرين">
+          <span class="door-icon">💝</span>
+        </div>
+        <div class="door-info"><h3>الصدقة</h3><p>اختر ما تنوي إخراجه من مالك.</p><span>افتح هذا الباب ←</span></div>
+      </button>
+
+      <button class="door" onclick="openDoor('water')">
+        <div class="door-image">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=700&q=80" alt="ماء نقي">
+          <span class="door-icon">💧</span>
+        </div>
+        <div class="door-info"><h3>سقيا الماء</h3><p>الماء حياة… ساهم في سقيا محتاج.</p><span>افتح هذا الباب ←</span></div>
+      </button>
+
+      <button class="door" onclick="openDoor('food')">
+        <div class="door-image">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=700&q=80" alt="طعام">
+          <span class="door-icon">🍲</span>
+        </div>
+        <div class="door-info"><h3>إطعام الطعام</h3><p>وجبة تسعد قلب إنسان محتاج.</p><span>افتح هذا الباب ←</span></div>
+      </button>
+
+      <button class="door" onclick="openDoor('knowledge')">
+        <div class="door-image">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=700&q=80" alt="كتب">
+          <span class="door-icon">📚</span>
+        </div>
+        <div class="door-info"><h3>العلم النافع</h3><p>علّم غيرك شيئًا ينفعه في حياته.</p><span>افتح هذا الباب ←</span></div>
+      </button>
+
+      <button class="door" onclick="openDoor('good')">
+        <div class="door-image">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=700&q=80" alt="شروق الشمس">
+          <span class="door-icon">❤️</span>
+        </div>
+        <div class="door-info"><h3>أعمال الخير</h3><p>أفكار بسيطة تصنع فرقًا كبيرًا.</p><span>افتح هذا الباب ←</span></div>
+      </button>
+
+    </div>
+
+    <section class="panel" id="result">
+      <h2 id="resultTitle">باب الخير</h2>
+      <div class="gold-line"></div>
+      <div class="panel-text" id="resultText"></div>
+      <div class="reference" id="reference"></div>
+      <div id="extra"></div>
+      <div class="panel-actions">
+        <button class="btn btn-gold" onclick="changeSuggestion()">✨ اقتراح آخر</button>
+        <button class="btn btn-light" onclick="copySuggestion()">نسخ المحتوى</button>
+        <button class="btn btn-light" onclick="shareSuggestion()">مشاركة</button>
+      </div>
+      <button class="panel-close" onclick="closePanel()">إغلاق ×</button>
+    </section>
+  </section>
+
+  <section class="section" id="tasbeeh">
+    <div class="section-heading">
+      <h2>مسبحة إلكترونية 🌿</h2>
+      <p>خذ لحظة هادئة واذكر الله</p>
+    </div>
+    <div class="counter-box">
+      <div class="counter-label" id="dhikrLabel">سبحان الله</div>
+      <div class="counter-number" id="counter">0</div>
+      <button class="counter-button" onclick="countDhikr()">سبّح</button>
+      <button class="reset" onclick="resetCounter()">إعادة التصفير ↻</button>
+      <div class="amounts">
+        <button class="amount selected" onclick="setDhikr('سبحان الله',this)">سبحان الله</button>
+        <button class="amount" onclick="setDhikr('الحمد لله',this)">الحمد لله</button>
+        <button class="amount" onclick="setDhikr('الله أكبر',this)">الله أكبر</button>
+        <button class="amount" onclick="setDhikr('أستغفر الله',this)">أستغفر الله</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="quote">
+      <div style="font-size:38px">🤍</div>
+      <strong>رسالة المشروع</strong>
+      <p>
+        ليس أجمل من أن يترك الإنسان خلفه أثرًا طيبًا،
+        وليس أصدق من دعوة تخرج من قلب محب.
+      </p>
+      <div class="gold-line"></div>
+      <strong>اللهم ارحم جدتي واغفر لها واجعل هذا العمل خيرًا ونفعًا.</strong>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-title">أثر طيب 🤍</div>
+  عن روح جدتي الغالية<br>
+  نسأل الله القبول والرحمة والمغفرة.<br>
+  <small>عمل خيري تطوعي، لا يستقبل الموقع أي أموال.</small>
+</footer>
+
+<button class="floating" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="العودة للأعلى">↑</button>
+
+<script>
+const data = {
+  dua: {
+    title:"دعاء لجدتي 🤲",
+    items:[
+      ["اللهم اغفر لها وارحمها، وعافها واعفُ عنها، وأكرم نزلها ووسّع مدخلها."],
+      ["اللهم آنس وحشتها، ونوّر قبرها، واجعل قبرها روضة من رياض الجنة."],
+      ["اللهم اجعلها في رحمتك وأمانك، وارزقها نعيمًا لا ينفد."],
+      ["اللهم اجمعنا بها في جنات النعيم، واجعل لقاءنا بها لقاءً لا فراق بعده."],
+      ["اللهم ارفع درجتها في المهديين، واخلفها في أهلها بخير."],
+      ["اللهم اجعل دعاءنا لها نورًا ورحمة، واغفر لها ما تقدم من ذنبها."]
+    ]
+  },
+  quran: {
+    title:"آية من القرآن الكريم 📖",
+    items:[
+      ["﴿أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ﴾","سورة الرعد – الآية 28"],
+      ["﴿فَإِنَّ مَعَ الْعُسْرِ يُسْرًا﴾","سورة الشرح – الآية 5"],
+      ["﴿وَقُلْ رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا﴾","سورة الإسراء – الآية 24"],
+      ["﴿وَهُوَ مَعَكُمْ أَيْنَ مَا كُنْتُمْ﴾","سورة الحديد – الآية 4"],
+      ["﴿إِنَّ اللَّهَ مَعَ الصَّابِرِينَ﴾","سورة البقرة – الآية 153"],
+      ["﴿وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ﴾","سورة الأعراف – الآية 156"]
+    ]
+  },
+  dhikr: {
+    title:"ذكر وتسبيح 🌿",
+    items:[
+      ["سبحان الله وبحمده، سبحان الله العظيم."],
+      ["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير."],
+      ["أستغفر الله العظيم وأتوب إليه."],
+      ["اللهم صلِّ وسلم على نبينا محمد."],
+      ["سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر."],
+      ["لا حول ولا قوة إلا بالله."]
+    ]
+  },
+  charity: {
+    title:"باب الصدقة 💝",
+    items:[
+      ["يمكنك إخراج صدقة بما تستطيع، ثم الدعاء أن ينفع الله بها ويجعل ثوابها لجدتك."],
+      ["ساهم في علاج مريض محتاج من خلال مؤسسة خيرية موثوقة."],
+      ["اشترِ احتياجات أساسية لأسرة متعففة."],
+      ["ساعد طالب علم محتاجًا في شراء أدواته الدراسية."]
+    ]
+  },
+  water: {
+    title:"باب سقيا الماء 💧",
+    items:[
+      ["قدّم زجاجة ماء لشخص يحتاج إليها."],
+      ["ساهم في مشروع سقيا ماء بعد التأكد من موثوقية الجهة القائمة عليه."],
+      ["وفّر ماءً نظيفًا في مكان مناسب ليستفيد منه إنسان أو حيوان."],
+      ["ساعد في توفير مياه شرب نظيفة لأسرة محتاجة."]
+    ]
+  },
+  food: {
+    title:"باب إطعام الطعام 🍲",
+    items:[
+      ["قدّم وجبة لشخص محتاج أو عامل بسيط."],
+      ["شارك في إعداد وجبة لأسرة متعففة."],
+      ["اشترِ بعض المواد الغذائية وقدمها لمن يحتاج."],
+      ["شارك في تجهيز وجبات وتوزيعها بطريقة تحفظ كرامة المحتاج."]
+    ]
+  },
+  knowledge: {
+    title:"باب العلم النافع 📚",
+    items:[
+      ["علّم طفلًا شيئًا جديدًا اليوم."],
+      ["شارك معلومة صحيحة ينتفع بها غيرك."],
+      ["ساعد شخصًا على تعلم القراءة أو الكتابة."],
+      ["أرسل كتابًا نافعًا لمن يحب القراءة."],
+      ["علّم شخصًا مهارة تستطيع بها مساعدته في حياته."]
+    ]
+  },
+  good: {
+    title:"باب أعمال الخير ❤️",
+    items:[
+      ["ابتسم في وجه إنسان، وقل كلمة طيبة."],
+      ["اتصل بقريب واسأل عنه وأدخل السرور على قلبه."],
+      ["ساعد شخصًا في حمل شيء أو قضاء حاجة."],
+      ["أزل شيئًا مؤذيًا من الطريق."],
+      ["سامح شخصًا، وابدأ صفحة جديدة."],
+      ["زر مريضًا أو اسأل عن شخص غائب."]
+    ]
+  }
+};
+
+const dailyIdeas=[
+  "اجعل اليوم مليئًا بالدعاء لمن تحب.",
+  "قدّم كوب ماء لشخص يحتاج إليه.",
+  "أدخل السرور على قلب إنسان بكلمة طيبة.",
+  "شارك معلومة نافعة مع شخص آخر.",
+  "تصدّق بما تستطيع ولو بالقليل.",
+  "اتصل بقريب لم تسأل عنه منذ مدة.",
+  "خصص لحظات لذكر الله والاستغفار."
+];
+
+let activeItems=[];
+let activeText="";
+let lastIndex=-1;
+let selectedAmount=0;
+let count=0;
+
+document.getElementById("dailyText").textContent =
+  dailyIdeas[Math.floor(Math.random()*dailyIdeas.length)];
+
+function openDoor(key){
+  activeItems=data[key].items;
+  document.getElementById("resultTitle").textContent=data[key].title;
+  document.getElementById("extra").innerHTML="";
+  document.getElementById("result").classList.add("active");
+  showRandom();
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"center"});
+  if(key==="charity") showAmounts();
+}
+
+function showRandom(){
+  let index=0;
+  if(activeItems.length>1){
+    do{index=Math.floor(Math.random()*activeItems.length)}
+    while(index===lastIndex);
+  }
+  lastIndex=index;
+  const item=activeItems[index];
+  activeText=item[0];
+  document.getElementById("resultText").textContent=item[0];
+  document.getElementById("reference").textContent=item[1]||"";
+}
+
+function changeSuggestion(){showRandom()}
+
+function closePanel(){
+  document.getElementById("result").classList.remove("active");
+}
+
+function copySuggestion(){
+  const text=activeText+" "+document.getElementById("reference").textContent;
+  navigator.clipboard?.writeText(text)
+    .then(()=>alert("تم نسخ المحتوى 🤍"))
+    .catch(()=>alert("تعذر النسخ. يمكنك تحديد النص ونسخه يدويًا."));
+}
+
+async function shareSuggestion(){
+  const text=activeText+" "+document.getElementById("reference").textContent;
+  if(navigator.share){
+    try{await navigator.share({title:"أثر طيب",text})}catch(e){}
+  }else{
+    copySuggestion();
+  }
+}
+
+function showAmounts(){
+  selectedAmount=0;
+  const extra=document.getElementById("extra");
+  extra.innerHTML=`
+    <div class="note">اختر مبلغًا تنوي إخراجه بنفسك صدقةً، ثم قدّمه لجهة موثوقة. هذا الموقع لا يستقبل المدفوعات.</div>
+    <div class="amounts">
+      ${[10,20,50,100,200].map(n=>`<button class="amount" onclick="selectAmount(${n},this)">${n} جنيه</button>`).join("")}
+    </div>
+    <div id="amountMessage" class="reference">لم تختر مبلغًا بعد.</div>
+  `;
+}
+
+function selectAmount(amount,button){
+  selectedAmount=amount;
+  document.querySelectorAll("#extra .amount").forEach(b=>b.classList.remove("selected"));
+  button.classList.add("selected");
+  document.getElementById("amountMessage").textContent=
+    `اخترت ${amount} جنيه. يمكنك إخراجها بنفسك في باب خير موثوق 🤍`;
+}
+
+function setDhikr(name,button){
+  document.getElementById("dhikrLabel").textContent=name;
+  document.querySelectorAll("#tasbeeh .amount").forEach(b=>b.classList.remove("selected"));
+  button.classList.add("selected");
+  count=0;
+  updateCounter();
+}
+
+function countDhikr(){
+  count++;
+  updateCounter();
+}
+
+function resetCounter(){
+  count=0;
+  updateCounter();
+}
+
+function updateCounter(){
+  document.getElementById("counter").textContent=count;
+}
+</script>
+
+</body>
+</html>
